@@ -1,0 +1,52 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id        Int       @id @default(autoincrement())
+  email     String    @unique
+  firstName String    @map("first_name")
+  lastName  String    @map("last_name")
+  workouts  Workout[]
+
+  @@map("users") // Maps the model to a lowercase/plural table name
+}
+
+model Workout {
+  id                Int      @id @default(autoincrement())
+  userId            Int      @map("user_id")
+  user              User     @relation(fields: [userId], references: [id])
+  date              DateTime @db.Date // Stores as YYYY-MM-DD in Postgres
+  completed         Boolean  @default(false)
+  source            String
+  sport             String
+  intensityType     String   @map("intensity_type")
+  title             String
+  distanceUnit      String?  @map("distance_unit")
+  estimatedPace     Int?     @map("estimated_pace")
+  plannedDistance   Int?     @map("planned_distance")
+  plannedDuration   Int?     @map("planned_duration")
+  plannedTss        Int      @map("planned_tss")
+  plannedIf         Float    @map("planned_if")
+  plannedCalories   Int?     @map("planned_calories")
+  completedDistance Int?     @map("completed_distance")
+  completedDuration Int?     @map("completed_duration")
+  completedTss      Int?     @map("completed_tss")
+  completedIf       Float?   @map("completed_if")
+  completedCalories Int?     @map("completed_calories")
+  description       String?
+  workoutStructure  Json?    @map("workout_structure")
+
+  @@map("workouts")
+}

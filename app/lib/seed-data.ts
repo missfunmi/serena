@@ -9,7 +9,7 @@ const users = [
 const workouts = [
   {
     userId: users[0].id,
-    date: new Date('2026-01-13'),
+    date: new Date(),
     completed: true,
     source: 'training_peaks',
     sport: 'strength',
@@ -28,7 +28,7 @@ const workouts = [
   },
   {
     userId: users[0].id,
-    date: new Date('2026-01-14'),
+    date: new Date(new Date().setDate(new Date().getDate() + 1)),
     completed: false,
     source: 'training_peaks',
     sport: 'cycling',
@@ -50,7 +50,7 @@ const workouts = [
   },
   {
     userId: users[0].id,
-    date: new Date('2026-01-14'),
+    date: new Date(new Date().setDate(new Date().getDate() + 1)),
     completed: false,
     source: 'training_peaks',
     sport: 'swimming',
@@ -80,7 +80,7 @@ const workouts = [
   },
   {
     userId: users[0].id,
-    date: new Date('2026-01-15'),
+    date: new Date(new Date().setDate(new Date().getDate() + 2)),
     completed: false,
     source: 'training_peaks',
     sport: 'running',

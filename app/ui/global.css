@@ -1,6 +1,9 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  /* Replace 'Geist Sans' with your actual font variable if using next/font */
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui;
+}
 
 input[type='number'] {
   -moz-appearance: textfield;
